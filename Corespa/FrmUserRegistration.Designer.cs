@@ -1,6 +1,6 @@
 ﻿namespace Corespa
 {
-    partial class Form1
+    partial class FrmUserRegistration
     {
         /// <summary>
         /// Required designer variable.

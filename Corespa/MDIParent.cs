@@ -21,17 +21,21 @@ namespace Corespa
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            Form childForm = new Form();
-            childForm.MdiParent = this;
-            childForm.Text = "Window " + childFormNumber++;
+            Form childForm = new Form
+            {
+                MdiParent = this,
+                Text = "Window " + childFormNumber++
+            };
             childForm.Show();
         }
 
         private void OpenFile(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
+            };
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
                 string FileName = openFileDialog.FileName;
@@ -40,9 +44,11 @@ namespace Corespa
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
+            };
             if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
             {
                 string FileName = saveFileDialog.FileName;
@@ -67,8 +73,7 @@ namespace Corespa
         }
 
         private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            toolStrip.Visible = toolBarToolStripMenuItem.Checked;
+        {       
         }
 
         private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,6 +107,15 @@ namespace Corespa
             {
                 childForm.Close();
             }
+        }
+
+        private void registroUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FrmUserRegistration
+            {
+                MdiParent = this.MdiParent
+            };
+            form.Show();
         }
     }
 }
