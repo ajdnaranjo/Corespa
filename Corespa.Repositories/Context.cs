@@ -11,13 +11,11 @@ namespace Corespa.Repositories
           
 
         public DbSet<User> Users { get; set; }
-        public DbSet<DocType> DocTypes { get; set; }
-
+       
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>();
-
-            modelBuilder.Entity<DocType>();
+        
         }
 
     }

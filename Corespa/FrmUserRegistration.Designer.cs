@@ -37,8 +37,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cbDocType = new System.Windows.Forms.ComboBox();
             this.txtDocument = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
@@ -120,11 +118,12 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(261, 46);
+            this.label8.Location = new System.Drawing.Point(27, 46);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(43, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "Cédula:";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label9
             // 
@@ -135,31 +134,13 @@
             this.label9.TabIndex = 8;
             this.label9.Text = "Puesto votación:";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(27, 46);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(89, 13);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "Tipo Documento:";
-            // 
-            // cbDocType
-            // 
-            this.cbDocType.DisplayMember = "Description";
-            this.cbDocType.FormattingEnabled = true;
-            this.cbDocType.Location = new System.Drawing.Point(122, 43);
-            this.cbDocType.Name = "cbDocType";
-            this.cbDocType.Size = new System.Drawing.Size(121, 21);
-            this.cbDocType.TabIndex = 10;
-            this.cbDocType.ValueMember = "Id";
-            // 
             // txtDocument
             // 
-            this.txtDocument.Location = new System.Drawing.Point(310, 43);
+            this.txtDocument.Location = new System.Drawing.Point(122, 43);
             this.txtDocument.Name = "txtDocument";
             this.txtDocument.Size = new System.Drawing.Size(180, 20);
             this.txtDocument.TabIndex = 11;
+            this.txtDocument.TextChanged += new System.EventHandler(this.txtDocument_TextChanged);
             // 
             // txtName
             // 
@@ -252,8 +233,6 @@
             this.Controls.Add(this.dtpBirthday);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtDocument);
-            this.Controls.Add(this.cbDocType);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -265,6 +244,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmUserRegistration";
             this.Text = "Registro de usuarios";
+            this.Load += new System.EventHandler(this.FrmUserRegistration_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -282,8 +262,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cbDocType;
         private System.Windows.Forms.TextBox txtDocument;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.DateTimePicker dtpBirthday;

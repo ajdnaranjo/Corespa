@@ -10,8 +10,7 @@ namespace Corespa.Models
     public class User
     {
         public int Id { get; set; }        
-        public string Documento { get; set; }
-        public int DocType { get; set; }
+        public string Document { get; set; }      
         public string Name { get; set; }
         public DateTime Birthday { get; set; }
         public string Email { get; set; }
