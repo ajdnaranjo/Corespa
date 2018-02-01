@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corespa.Repositories", "Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corespa", "Corespa\Corespa.csproj", "{3AC4C9F6-1E05-4202-ABA2-5923D667C553}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corespa.Models", "Corespa.Models\Corespa.Models.csproj", "{BDF7E6DD-6424-42BB-AA7E-99AE52FFBD51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3AC4C9F6-1E05-4202-ABA2-5923D667C553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AC4C9F6-1E05-4202-ABA2-5923D667C553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AC4C9F6-1E05-4202-ABA2-5923D667C553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDF7E6DD-6424-42BB-AA7E-99AE52FFBD51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF7E6DD-6424-42BB-AA7E-99AE52FFBD51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDF7E6DD-6424-42BB-AA7E-99AE52FFBD51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDF7E6DD-6424-42BB-AA7E-99AE52FFBD51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -111,11 +111,11 @@ namespace Corespa
 
         private void registroUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new FrmUserRegistration
+            var frm = new FrmUserRegistration()
             {
-                MdiParent = this.MdiParent
+                MdiParent = this
             };
-            form.Show();
+            frm.Show();
         }
     }
 }
