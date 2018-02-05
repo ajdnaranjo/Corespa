@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Corespa.Models;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Corespa.Models;
 
 namespace Corespa.Repositories
 {
@@ -60,19 +56,16 @@ namespace Corespa.Repositories
 
         }
 
+        public User GetUserByDocument(string document)
+        {
+            var user = new User();
+            using (var context = new Context())
+            {
+                user = context.Users.FirstOrDefault(x => x.Document ==  document );
+            }
 
-
-
-        //    public User GetUserByDocument()
-        //{
-        //    var user = new User();
-        //    using (var context = new Context())
-        //    {
-        //        user = context.Users.FirstOrDefault(x => x.Documento == "8357559");
-        //    }
-
-        //    return user;
-        //}
+                return user;
+        }
 
     }
 }

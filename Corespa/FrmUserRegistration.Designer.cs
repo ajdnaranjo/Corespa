@@ -141,6 +141,7 @@
             this.txtDocument.Size = new System.Drawing.Size(180, 20);
             this.txtDocument.TabIndex = 11;
             this.txtDocument.TextChanged += new System.EventHandler(this.txtDocument_TextChanged);
+            this.txtDocument.Leave += new System.EventHandler(this.txtDocument_Leave);
             // 
             // txtName
             // 
