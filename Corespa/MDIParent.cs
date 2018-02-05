@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Corespa
@@ -54,7 +47,6 @@ namespace Corespa
                 string FileName = saveFileDialog.FileName;
             }
         }
-
     
         private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
