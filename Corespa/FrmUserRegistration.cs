@@ -17,12 +17,7 @@ namespace Corespa
         {
           
         }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void btnSave_Click(object sender, EventArgs e)
         {
             var repo = new UserRepository();

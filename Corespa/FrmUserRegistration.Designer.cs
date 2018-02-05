@@ -94,8 +94,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Teléfono:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.label5.Text = "Teléfono:";           
             // 
             // label6
             // 
