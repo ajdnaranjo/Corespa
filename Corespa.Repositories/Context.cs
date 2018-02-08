@@ -1,7 +1,5 @@
 ﻿using Corespa.Models;
 using System.Data.Entity;
-using System.IO;
-using System.Configuration;
 
 namespace Corespa.Repositories
 {
@@ -11,7 +9,6 @@ namespace Corespa.Repositories
         public Context() : base("cnxConnection")
         {           
         }
-
      
         public DbSet<User> Users { get; set; }
        

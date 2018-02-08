@@ -2,6 +2,7 @@
 using Corespa.Repositories;
 using System;
 using System.Windows.Forms;
+using System.Net.Mail;
 
 namespace Corespa
 {
@@ -23,23 +24,25 @@ namespace Corespa
             var repo = new UserRepository();
 
             if (ValidateFields())
-            {
-
-                var user = new User()
-                {
-                    Document = txtDocument.Text.Trim(),
-                    Name = txtName.Text.Trim(),
-                    Birthday = dtpBirthday.Value,
-                    Email = txtEmail.Text.Trim(),
-                    Celphone = txtCelPhone.Text.Trim(),
-                    Phone = int.Parse(txtPhone.Text.Trim()),
-                    Profesion = txtProfesion.Text.Trim(),
-                    Activity = txtActivity.Text.Trim(),
-                    PollingPlace = txtPolingPlace.Text.Trim()
-                };
-
+            {                               
                 try
                 {
+                    var user = new User()
+                    {
+                        Document = txtDocument.Text.Trim(),
+                        Name = txtName.Text.Trim(),
+                        Birthday = dtpBirthday.Value,
+                        Email = txtEmail.Text.Trim(),
+                        Celphone = txtCelPhone.Text.Trim(),
+                        Phone = txtPhone.Text.Trim(),
+                        Profesion = txtProfesion.Text.Trim(),
+                        Activity = txtActivity.Text.Trim(),
+                        PollingPlace = txtPolingPlace.Text.Trim(),
+                        Neighborhood = txtNeighborhood.Text.Trim()
+                    };
+                    
+                    new MailAddress(user.Email);                                            
+                    
                     var response = repo.SaveUser(user);
 
                     CleanForm();
@@ -47,15 +50,17 @@ namespace Corespa
                     if (response > 0) MessageBox.Show("El registro se actualizó correctamente.");
 
                 }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Formato de correo electrónico incorrecto.");
+                }
                 catch
                 {
                     MessageBox.Show("Se ha producido un errror, verifique la información ingresada.");
-                }
+                }               
             }
             else
                 MessageBox.Show("Verifique la información ingresada, faltan campos por diligenciar.");
-
-
         }
 
         private bool ValidateFields()
@@ -65,9 +70,7 @@ namespace Corespa
             if (string.IsNullOrEmpty(txtDocument.Text.Trim())) flag = false;
             if (string.IsNullOrEmpty(txtName.Text.Trim())) flag = false;
 
-
             return flag;
-
         }
 
         private void CleanForm()
@@ -81,21 +84,7 @@ namespace Corespa
             txtActivity.Text = string.Empty;
             txtPolingPlace.Text = string.Empty;
             dtpBirthday.Value = DateTime.Now;
-        }
-
-        private void FrmUserRegistration_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDocument_TextChanged(object sender, EventArgs e)
-        {
-
+            txtNeighborhood.Text = string.Empty;
         }
 
         private void txtDocument_Leave(object sender, EventArgs e)
@@ -110,12 +99,23 @@ namespace Corespa
                     txtName.Text = user.Name;
                     dtpBirthday.Value = user.Birthday;
                     txtEmail.Text = user.Email;
-                    txtPhone.Text = user.Phone.ToString();
+                    txtPhone.Text = user.Phone;
                     txtCelPhone.Text = user.Celphone;
                     txtActivity.Text = user.Activity;
                     txtProfesion.Text = user.Profesion;
                     txtPolingPlace.Text = user.PollingPlace;
+                    txtNeighborhood.Text = user.Neighborhood;
                 }
+            }
+        }
+
+        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+            {
+                MessageBox.Show("Sólo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
             }
         }
     }

@@ -8,16 +8,13 @@ namespace Corespa.Repositories
 
         public int SaveUser(User userToSave)
         {
-            var flag = 0;
+            int flag ;
             using (var context = new Context())
-            {
-                var user = new User();
-
-                user = context.Users.FirstOrDefault(c => c.Document == userToSave.Document);
+            {               
+                var user = context.Users.FirstOrDefault(c => c.Document == userToSave.Document);
 
                 if (user == null)
                 {
-
                     user = new User
                     {
                         Document = userToSave.Document,
@@ -28,14 +25,15 @@ namespace Corespa.Repositories
                         Phone = userToSave.Phone,
                         Profesion = userToSave.Profesion,
                         Activity = userToSave.Activity,
-                        PollingPlace = userToSave.PollingPlace
+                        PollingPlace = userToSave.PollingPlace,
+                        Neighborhood = userToSave.Neighborhood
                     };
                     context.Users.Add(user);
                     flag = 1;
                 }
                 else
                 {
-                    User u = context.Users.FirstOrDefault(cl => cl.Document == userToSave.Document);
+                    var u = context.Users.FirstOrDefault(cl => cl.Document == userToSave.Document);
 
                     u.Name = userToSave.Name;
                     u.Birthday = userToSave.Birthday;
@@ -45,6 +43,7 @@ namespace Corespa.Repositories
                     u.Profesion = userToSave.Profesion;
                     u.Activity = userToSave.Activity;
                     u.PollingPlace = userToSave.PollingPlace;
+                    u.Neighborhood = userToSave.Neighborhood;
                     flag = 2;
                 }
 
@@ -57,14 +56,11 @@ namespace Corespa.Repositories
         }
 
         public User GetUserByDocument(string document)
-        {
-            var user = new User();
+        {            
             using (var context = new Context())
             {
-                user = context.Users.FirstOrDefault(x => x.Document ==  document );
-            }
-
-                return user;
+                return context.Users.FirstOrDefault(x => x.Document ==  document );
+            }             
         }
 
     }
