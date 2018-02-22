@@ -88,7 +88,7 @@ namespace Corespa.Repositories
                             csv.WriteField("Fecha nacimiento");
                             csv.WriteField("Correo");
                             csv.WriteField("Celular");
-                            csv.WriteField("Telefono");
+                            csv.WriteField("Teléfono");
                             csv.WriteField("Profesion");
                             csv.WriteField("Actividad");
                             csv.WriteField("Puesto votacion");
@@ -121,7 +121,7 @@ namespace Corespa.Repositories
                     };
                     if (save.ShowDialog() == DialogResult.OK)
                     {
-                        File.WriteAllText(save.FileName, result);
+                        File.WriteAllText(save.FileName, result, Encoding.UTF8);
                     }
                 }
             }
