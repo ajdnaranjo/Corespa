@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Corespa.Repositories;
 
 namespace Corespa
 {
@@ -56,6 +57,13 @@ namespace Corespa
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+     
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var repo = new UserRepository();
+            repo.ExportUsers();            
         }
     }
 }

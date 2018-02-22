@@ -1,5 +1,10 @@
 ﻿using Corespa.Models;
 using System.Linq;
+using System;
+using System.IO;
+using CsvHelper;
+using System.Text;
+using System.Windows.Forms;
 
 namespace Corespa.Repositories
 {
@@ -8,9 +13,9 @@ namespace Corespa.Repositories
 
         public int SaveUser(User userToSave)
         {
-            int flag ;
+            int flag;
             using (var context = new Context())
-            {               
+            {
                 var user = context.Users.FirstOrDefault(c => c.Document == userToSave.Document);
 
                 if (user == null)
@@ -56,12 +61,72 @@ namespace Corespa.Repositories
         }
 
         public User GetUserByDocument(string document)
-        {            
+        {
             using (var context = new Context())
             {
-                return context.Users.FirstOrDefault(x => x.Document ==  document );
-            }             
+                return context.Users.FirstOrDefault(x => x.Document == document);
+            }
         }
 
+        public void ExportUsers()
+        {
+            using (var mem = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(mem))
+                {
+                    using (var csv = new CsvWriter(writer))
+                    {
+                        using (var context = new Context())
+                        {
+
+                            csv.Configuration.Delimiter = "|";
+
+                            var users = context.Users.ToList();
+
+                            csv.WriteField("Documento");
+                            csv.WriteField("Nombre");
+                            csv.WriteField("Fecha nacimiento");
+                            csv.WriteField("Correo");
+                            csv.WriteField("Celular");
+                            csv.WriteField("Telefono");
+                            csv.WriteField("Profesion");
+                            csv.WriteField("Actividad");
+                            csv.WriteField("Puesto votacion");
+                            csv.WriteField("Barrio");
+
+                            csv.NextRecord();
+
+                            foreach (var user in users)
+                            {
+                                csv.WriteField(user.Document);
+                                csv.WriteField(user.Name);
+                                csv.WriteField(user.Birthday.ToString());
+                                csv.WriteField(user.Email);
+                                csv.WriteField(user.Celphone);
+                                csv.WriteField(user.Phone);
+                                csv.WriteField(user.Profesion);
+                                csv.WriteField(user.Activity);
+                                csv.WriteField(user.PollingPlace);
+                                csv.WriteField(user.Neighborhood);
+
+                                csv.NextRecord();
+                            }
+                        }
+                    }
+                    var result = Encoding.UTF8.GetString(mem.ToArray());
+                    SaveFileDialog save = new SaveFileDialog
+                    {
+                        Filter = "CSV|*.csv|All file|*.*",
+                        FilterIndex = 1
+                    };
+                    if (save.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllText(save.FileName, result);
+                    }
+                }
+            }
+        }
     }
 }
+
+
